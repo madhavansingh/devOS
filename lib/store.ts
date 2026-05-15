@@ -143,7 +143,11 @@ export const useWorkspaceStore = create<WorkspaceState>((set) => ({
   toggleFolder: (path) =>
     set((state) => {
       const next = new Set(state.expandedFolders);
-      next.has(path) ? next.delete(path) : next.add(path);
+      if (next.has(path)) {
+        next.delete(path);
+      } else {
+        next.add(path);
+      }
       return { expandedFolders: next };
     }),
 

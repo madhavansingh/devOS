@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { useSession } from "next-auth/react";
 import DashboardShell from "@/components/layout/DashboardShell";
 import ReactMarkdown from "react-markdown";
 import {
@@ -22,7 +21,6 @@ interface Message {
 }
 
 export default function AIChatPage() {
-  const { data: session } = useSession();
   const [repoInput, setRepoInput] = useState("");
   const [repoLocked, setRepoLocked] = useState(false);
   const [parsedRepo, setParsedRepo] = useState<{ owner: string; repo: string; branch: string } | null>(null);

@@ -1,0 +1,27 @@
+
+> devos@0.1.0 build
+> next build
+
+   ▲ Next.js 15.3.1
+   - Environments: .env.local
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully in 1000ms
+   Linting and checking validity of types ...
+Failed to compile.
+
+./lib/supabase.ts:144:6
+Type error: No overload matches this call.
+  Overload 1 of 2, '(values: never, options?: { onConflict?: string | undefined; ignoreDuplicates?: boolean | undefined; count?: "exact" | "planned" | "estimated" | undefined; } | undefined): PostgrestFilterBuilder<{ ...; }, ... 5 more ..., "POST">', gave the following error.
+    Argument of type '{ github_id: string; github_login: string; email: string | null; avatar_url: string | null; updated_at: string; }' is not assignable to parameter of type 'never'.
+  Overload 2 of 2, '(values: never[], options?: { onConflict?: string | undefined; ignoreDuplicates?: boolean | undefined; count?: "exact" | "planned" | "estimated" | undefined; defaultToNull?: boolean | undefined; } | undefined): PostgrestFilterBuilder<...>', gave the following error.
+    Object literal may only specify known properties, and 'github_id' does not exist in type 'never[]'.
+
+[0m [90m 142 |[39m   [36mconst[39m { data[33m:[39m user[33m,[39m error } [33m=[39m [36mawait[39m db[0m
+[0m [90m 143 |[39m     [33m.[39m[36mfrom[39m([32m"users"[39m)[0m
+[0m[31m[1m>[22m[39m[90m 144 |[39m     [33m.[39mupsert([0m
+[0m [90m     |[39m      [31m[1m^[22m[39m[0m
+[0m [90m 145 |[39m       {[0m
+[0m [90m 146 |[39m         github_id[33m:[39m data[33m.[39mgithub_id[33m,[39m[0m
+[0m [90m 147 |[39m         github_login[33m:[39m data[33m.[39mgithub_login[33m,[39m[0m
+Next.js build worker exited with code: 1 and signal: null

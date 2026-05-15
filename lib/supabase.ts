@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { serverEnv, publicEnv } from "@/lib/env";
+import type { Database } from "@/types/supabase";
 
 /**
  * Supabase integration layer for DevOS.
@@ -17,11 +18,11 @@ import { serverEnv, publicEnv } from "@/lib/env";
  * Bypasses RLS — used for: vector inserts, chunk lookups, indexing jobs.
  * NEVER expose this to the browser.
  */
-let _adminClient: ReturnType<typeof createClient> | null = null;
+let _adminClient: ReturnType<typeof createClient<Database>> | null = null;
 
 export function getSupabaseAdmin() {
   if (!_adminClient) {
-    _adminClient = createClient(publicEnv.SUPABASE_URL, serverEnv.SUPABASE_SERVICE_ROLE_KEY, {
+    _adminClient = createClient<Database>(publicEnv.SUPABASE_URL, serverEnv.SUPABASE_SERVICE_ROLE_KEY, {
       auth: { persistSession: false },
     });
   }
@@ -33,7 +34,7 @@ export function getSupabaseAdmin() {
  * Restricted by RLS policies (auth.uid() scoped).
  */
 export function getSupabaseClient() {
-  return createClient(publicEnv.SUPABASE_URL, publicEnv.SUPABASE_ANON_KEY);
+  return createClient<Database>(publicEnv.SUPABASE_URL, publicEnv.SUPABASE_ANON_KEY);
 }
 
 // ─────────────────────────────────────────────────────────────

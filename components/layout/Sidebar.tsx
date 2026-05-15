@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSession } from "next-auth/react";
 import {
   LayoutDashboard,
   GitFork,
@@ -21,7 +20,6 @@ const navItems = [
 
 export default function Sidebar() {
   const pathname = usePathname();
-  const { data: session } = useSession();
 
   return (
     <aside className="flex flex-col w-[260px] min-h-screen glass-surface px-4 py-6 shrink-0">

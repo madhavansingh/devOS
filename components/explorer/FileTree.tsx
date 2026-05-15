@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { GitFork, AlertCircle, Loader2 } from "lucide-react";
+import { GitFork, AlertCircle } from "lucide-react";
 import { useWorkspaceStore } from "@/lib/store";
 import TreeNode from "./TreeNode";
 
